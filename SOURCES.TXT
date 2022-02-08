@@ -1,0 +1,2 @@
+- https://heptagon.in/2019/03/01/how-to-build-a-chrome-extension-chapter-3-changing-background-color-of-a-paragraph/
+- https://developer.chrome.com/docs/extensions/mv3/content_scripts/

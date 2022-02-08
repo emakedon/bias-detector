@@ -1,0 +1,9 @@
+.greeting{
+    width: 300px;
+    margin-top: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
