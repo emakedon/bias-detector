@@ -1,5 +1,5 @@
 console.log("Background running");
-chrome.action.onClicked.addListener(IconClicked);
+chrome.browserAction.onClicked.addListener(IconClicked);
 function IconClicked(tab)
 {
 	let msg = {

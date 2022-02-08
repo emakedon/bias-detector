@@ -5,9 +5,6 @@ function gotMessage(message,sender,sendresponse)
 	if (!isPressed){
         console.log(message.clickedOn);
         let paragraphs = document.getElementsByTagName("p");
-        // if (paragraphs.length == 0){
-        //     console.log("there are no 'p' tags in this document.")
-        // }
         for(elt of paragraphs)
         {
             elt.style['background-color'] = '#ffdf65';
