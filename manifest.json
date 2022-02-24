@@ -23,9 +23,3 @@
      "browser_action" : {
      }
 }
-
-// When the browser action icon is clicked, the 
-// background script sends a message to the content script.
-
-// The content script on receiving a message from the
-//  background performs an action of changing the background color of the paragraph.
