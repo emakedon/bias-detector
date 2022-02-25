@@ -15,9 +15,16 @@ const consarr = ['different', 'attempt', 'notion', 'claims', 'uncertainty',
 'place', 'energy', 'american', 'politics', 'domestic', 'initiative',
 'made', 'sure', 'one', 'important', 'middle', 'east', 'heavily', 'first',
 'place', 'energy', 'facing', 'united', 'states'];
+const emoarr = [];
 
-String.prototype.replaceAtIndex = function(index, value) {
-    return ` <span> ${this.substr(0, index)}</span>` + value + `<span> ${this.substr(index + value.length)} </span>`
+String.prototype.replaceAtIndex = function(index, value, wordlen) {
+    console.log("1 ", this.substr(0, index));
+    console.log("2 ", value);
+    console.log("2 ", this);
+    console.log("2.5 ", index);
+    console.log("2.6 ", value.length);
+    console.log("3 ", this.substr(index + value.length));
+    return ` <span> ${this.substr(0, index)}</span>` + value + `<span>${this.substr(index + wordlen)} </span>`
 }
 
 function gotMessage(message,sender,sendresponse)
@@ -28,25 +35,26 @@ function gotMessage(message,sender,sendresponse)
         count = 0;
         for(elt of paragraphs)
         {
-            console.log("befor changes: ", elt);
             count += 1;
-            innerwords = elt.innerText.toLowerCase();
+            let lowerinnerwords = elt.innerText.toLowerCase();
+            let innerwords = elt.innerText;
             for (libword of libarr){
-                if (innerwords.includes(" " + libword)){
-                    let position = innerwords.search(libword.toLowerCase()); //added
+                if (lowerinnerwords.includes(" " + libword)){
+                    let position = lowerinnerwords.search(libword.toLowerCase()); //added
                     let html = `<span style="background-color: #FC9A9A !important;">${libword}</span>`;
-                    replaced_innerwords = innerwords.replaceAtIndex(position, html);
+                    let wordlen = libword.length;
+                    console.log(wordlen);
+                    replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
                     elt.innerHTML = replaced_innerwords;
-                    console.log("after changes: ", elt);
                 }
             }
             for (consword of consarr){
-                if (innerwords.includes(" " + consword)){
-                    let position = innerwords.search(consword.toLowerCase()); //added
+                if (lowerinnerwords.includes(" " + consword)){
+                    let position = lowerinnerwords.search(consword.toLowerCase()); //added
                     let html = `<span style="background-color: #9ABFFC !important;">${consword}</span>`;
-                    replaced_innerwords = innerwords.replaceAtIndex(position, html);
+                    let wordlen = consword.length;
+                    replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
                     elt.innerHTML = replaced_innerwords;
-                    console.log("after changes: ", elt);
                 }
             }
         }
