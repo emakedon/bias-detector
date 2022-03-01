@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener(gotMessage);
 let isPressed = false;
-const libarr = ["and"];
+const libarr = ["and", "Soviet", "Russia", "Ukraine", "war"];
 const consarr = ['different', 'attempt', 'notion', 'claims', 'uncertainty',
 'initiative', 'impose', 'association', 'leader', 'clearly', 'felt', 'dependence',
 'brought', 'december', 'intentions', 'changed', 'acting', 'sending', 'remain',
@@ -32,10 +32,8 @@ function gotMessage(message,sender,sendresponse)
 	if (!isPressed){
         console.log(message.clickedOn);
         let paragraphs = document.getElementsByTagName("p");
-        count = 0;
         for(elt of paragraphs)
         {
-            count += 1;
             let lowerinnerwords = elt.innerText.toLowerCase();
             let innerwords = elt.innerText;
             for (libword of libarr){
@@ -58,23 +56,50 @@ function gotMessage(message,sender,sendresponse)
                 }
             }
         }
-        
-        toggleHighlight()
+        toggleHighlight();
     }
     else{
+        // let paragraphs = document.getElementsByTagName("p");
+        // for(elt of paragraphs)
+        // {
+        //     elt.style['background-color'] = '';
+        // }
+        // console.log("unhighlighting");
         let paragraphs = document.getElementsByTagName("p");
         for(elt of paragraphs)
         {
-            elt.style['background-color'] = '';
+            let lowerinnerwords = elt.innerText.toLowerCase();
+            let innerwords = elt.innerText;
+            for (libword of libarr){
+                if (lowerinnerwords.includes(" " + libword)){
+                    let position = lowerinnerwords.search(libword.toLowerCase()); //added
+                    let html = `<span style="background-color: "" !important;">${libword}</span>`;
+                    let wordlen = libword.length;
+                    console.log(wordlen);
+                    replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
+                    elt.innerHTML = replaced_innerwords;
+                }
+            }
+            for (consword of consarr){
+                if (lowerinnerwords.includes(" " + consword)){
+                    let position = lowerinnerwords.search(consword.toLowerCase()); //added
+                    let html = `<span style="background-color: "" !important;">${consword}</span>`;
+                    let wordlen = consword.length;
+                    replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
+                    elt.innerHTML = replaced_innerwords;
+                }
+            }
         }
-        toggleHighlight()
+        toggleHighlight();
     }
 }
 function toggleHighlight(){
     if(!isPressed){
         isPressed = true;
+        console.log("turning isPress to true");
     }
     else{
         isPressed = false;
+        console.log("turning isPress to false");
     }
 }
