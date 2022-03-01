@@ -1,7 +1,5 @@
 // chrome.runtime.onMessage.addListener(gotMessage);
 
-
-
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if( request.message == "highlight" ) {
@@ -98,43 +96,6 @@ function highlightArticle()
         }
         toggleHighlight();
     }
-//     else{
-//         let paragraphs = document.getElementsByTagName("p");
-//         for(elt of paragraphs)
-//         {
-//             let lowerinnerwords = elt.innerText.toLowerCase();
-//             let innerwords = elt.innerText;
-//             for (libword of libarr){
-//                 if (lowerinnerwords.includes(" " + libword)){
-//                     let position = lowerinnerwords.search(libword.toLowerCase()); //added
-//                     let html = `<span style="background-color: "" !important;">${libword}</span>`;
-//                     let wordlen = libword.length;
-//                     replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
-//                     // elt.innerHTML = replaced_innerwords;
-//                     replace_html += replaced_innerwords;
-//                 }
-//                 else{
-//                     replace_html += elt.innerHTML;
-//                 }
-//             }
-//             for (consword of consarr){
-//                 if (lowerinnerwords.includes(" " + consword)){
-//                     let position = lowerinnerwords.search(consword.toLowerCase()); //added
-//                     let html = `<span style="background-color: "" !important;">${consword}</span>`;
-//                     let wordlen = consword.length;
-//                     replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
-//                     // elt.innerHTML = replaced_innerwords;
-//                     replace_html += replaced_innerwords;
-//                 }
-//                 else{
-//                     replace_html += elt.innerHTML;
-//                 }
-//             }
-//             elt.innerHTML = replace_html;
-//         }
-//         console.log("end of loop");
-//         toggleHighlight();
-//     }
 }
 function toggleHighlight(){
     if(!isPressed){
