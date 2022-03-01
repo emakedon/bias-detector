@@ -1,5 +1,6 @@
 // chrome.runtime.onMessage.addListener(gotMessage);
 
+//test test
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if( request.message == "highlight" ) {
