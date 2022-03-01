@@ -1,6 +1,7 @@
 // chrome.runtime.onMessage.addListener(gotMessage);
 
-//test test
+
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if( request.message == "highlight" ) {
@@ -72,60 +73,31 @@ function highlightArticle()
             }
             console.log(p_html);
             elt.innerHTML = p_html;
-                // is
-            
-            // for (consword of consarr){
-            //     if (lowerinnerwords.includes(" " + consword)){
-            //         let position = lowerinnerwords.search(consword.toLowerCase()); //added
-            //         let html = `<span style="background-color: #9ABFFC !important;">${consword}</span>`;
-            //         let wordlen = consword.length;
-            //         replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
-            //         // elt.innerHTML = replaced_innerwords;
-            //         replace_html += replaced_innerwords;
-            //     }
-            //     else{
-            //         replace_html += elt.innerHTML;
-            //     }
-            // }
         }
         toggleHighlight();
     }
-	// if (!isPressed){
-    //     let paragraphs = document.getElementsByTagName("p");
-    //     for(elt of paragraphs)
-    //     {
-    //         let lowerinnerwords = elt.innerText.toLowerCase();
-    //         let innerwords = elt.innerText;
-    //         for (libword of libarr){
-    //             if (lowerinnerwords.includes(" " + libword)){
-    //                 let position = lowerinnerwords.search(libword.toLowerCase()); //added
-    //                 let html = `<span style="background-color: #FC9A9A !important;">${libword}</span>`;
-    //                 let wordlen = libword.length;
-    //                 replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
-    //                 // elt.innerHTML = replaced_innerwords;
-    //                 replace_html += replaced_innerwords;
-    //             }
-    //             else{
-    //                 replace_html += elt.innerHTML;
-    //             }
-    //         }
-    //         // for (consword of consarr){
-    //         //     if (lowerinnerwords.includes(" " + consword)){
-    //         //         let position = lowerinnerwords.search(consword.toLowerCase()); //added
-    //         //         let html = `<span style="background-color: #9ABFFC !important;">${consword}</span>`;
-    //         //         let wordlen = consword.length;
-    //         //         replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
-    //         //         // elt.innerHTML = replaced_innerwords;
-    //         //         replace_html += replaced_innerwords;
-    //         //     }
-    //         //     else{
-    //         //         replace_html += elt.innerHTML;
-    //         //     }
-    //         // }
-    //         elt.innerHTML = replace_html;
-    //     }
-    //     toggleHighlight();
-    // }
+    else{
+        let paragraphs = document.getElementsByTagName("p");
+        for(elt of paragraphs)
+        {
+            let p_html = ``;
+            let lowerinnerwords = elt.innerText.toLowerCase();
+            let innerwords_string = lowerinnerwords.split(" ");
+            for (innerword of innerwords_string){
+                let html = ``;
+                if(innerword in word_dict){
+                    html = `<span style="background-color:'' !important;">${innerword} </span>`;
+                }
+                else{
+                    html = `${innerword} `;
+                }
+                p_html += html;
+            }
+            console.log(p_html);
+            elt.innerHTML = p_html;
+        }
+        toggleHighlight();
+    }
 //     else{
 //         let paragraphs = document.getElementsByTagName("p");
 //         for(elt of paragraphs)
