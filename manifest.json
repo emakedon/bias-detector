@@ -8,7 +8,7 @@
         "48": "/images/icon-48.png",
         "128": "/images/icon-128.png"
     },
-    "permissions": ["storage", "activeTab", "tabs", "scripting"],
+    "permissions": ["activeTab", "declarativeContent", "storage"],
     "content_scripts" : [
 		{
 			"matches" : [
@@ -20,12 +20,7 @@
      "background" : {
                    "scripts" : ["background.js"]
      },
-     "browser_action" : {
-     }
+    "browser_action" :{
+      "default_popup": "popup.html"
+    }
 }
-
-// When the browser action icon is clicked, the 
-// background script sends a message to the content script.
-
-// The content script on receiving a message from the
-//  background performs an action of changing the background color of the paragraph.
