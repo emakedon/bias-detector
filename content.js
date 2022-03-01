@@ -17,8 +17,9 @@ chrome.runtime.onMessage.addListener(
 
 
 let isPressed = false;
-const libarr = ['flower', 'Ukraine.', 'and', 'cross-pollination'];
-// , "Ukraine.", "and", "misogynist", "equity", "microaggression", "microaggressions", 'privilege', 'phobe', 'racist','racism', 'fascist', 'sexist', 'bigot', 'ally', 'allies', 'incarceration', 'marginalized', 'diversity', 'affirmative action', 'awareness', 
+const libarr = ["Ukraine"]; 
+// , "misogynist", "equity", "microaggression"];
+// , "microaggressions", 'privilege', 'phobe', 'racist','racism', 'fascist', 'sexist', 'bigot', 'ally', 'allies', 'incarceration', 'marginalized', 'diversity', 'affirmative action', 'awareness', 
 // 'gentrification', 'imperialist', 'oppressor', 'intersectionality', 'tolerant', 'homophobia', 'justice', 'systemic', 'universal', 'programs', 'community', 'corporate', 'forgiveness', 'harm', 'advocacy', 'fair', 'accountability','accountability', 'fairness', 'equitable', 
 // 'vulnerable', 'wrongful', 'restorative', 'resolution', 'inclusive', 'inclusion', 'toxic', 'xenophobic', 'safe', 'belonging', 'equitable', 'colonialism', 'rooted', 'sustainable', 'climate', 'science', 'undocumented', 'ally-ship', 'disparate', 'inequity', 'structures', 'fragility', 'prejudice', 'decolonialism', 'implicit', 'internalized', 'bias', 'biases', 'unconscious', 
 //  'reactionary'];
@@ -39,9 +40,11 @@ function highlightArticle()
         let paragraphs = document.getElementsByTagName("p");
         for(elt of paragraphs)
         {
+            console.log(elt);
             let lowerinnerwords = elt.innerText.toLowerCase();
             let innerwords = elt.innerText;
             for (libword of libarr){
+                console.log(libarr);
                 if (lowerinnerwords.includes(" " + libword)){
                     let position = lowerinnerwords.search(libword.toLowerCase()); //added
                     let html = `<span style="background-color: #FC9A9A !important;">${libword}</span>`;
@@ -54,60 +57,60 @@ function highlightArticle()
                     replace_html += elt.innerHTML;
                 }
             }
-            for (consword of consarr){
-                if (lowerinnerwords.includes(" " + consword)){
-                    let position = lowerinnerwords.search(consword.toLowerCase()); //added
-                    let html = `<span style="background-color: #9ABFFC !important;">${consword}</span>`;
-                    let wordlen = consword.length;
-                    replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
-                    // elt.innerHTML = replaced_innerwords;
-                    replace_html += replaced_innerwords;
-                }
-                else{
-                    replace_html += elt.innerHTML;
-                }
-            }
+            // for (consword of consarr){
+            //     if (lowerinnerwords.includes(" " + consword)){
+            //         let position = lowerinnerwords.search(consword.toLowerCase()); //added
+            //         let html = `<span style="background-color: #9ABFFC !important;">${consword}</span>`;
+            //         let wordlen = consword.length;
+            //         replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
+            //         // elt.innerHTML = replaced_innerwords;
+            //         replace_html += replaced_innerwords;
+            //     }
+            //     else{
+            //         replace_html += elt.innerHTML;
+            //     }
+            // }
             elt.innerHTML = replace_html;
         }
         toggleHighlight();
     }
-    else{
-        let paragraphs = document.getElementsByTagName("p");
-        for(elt of paragraphs)
-        {
-            let lowerinnerwords = elt.innerText.toLowerCase();
-            let innerwords = elt.innerText;
-            for (libword of libarr){
-                if (lowerinnerwords.includes(" " + libword)){
-                    let position = lowerinnerwords.search(libword.toLowerCase()); //added
-                    let html = `<span style="background-color: "" !important;">${libword}</span>`;
-                    let wordlen = libword.length;
-                    replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
-                    // elt.innerHTML = replaced_innerwords;
-                    replace_html += replaced_innerwords;
-                }
-                else{
-                    replace_html += elt.innerHTML;
-                }
-            }
-            for (consword of consarr){
-                if (lowerinnerwords.includes(" " + consword)){
-                    let position = lowerinnerwords.search(consword.toLowerCase()); //added
-                    let html = `<span style="background-color: "" !important;">${consword}</span>`;
-                    let wordlen = consword.length;
-                    replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
-                    // elt.innerHTML = replaced_innerwords;
-                    replace_html += replaced_innerwords;
-                }
-                else{
-                    replace_html += elt.innerHTML;
-                }
-            }
-            elt.innerHTML = replace_html;
-        }
-        console.log("end of loop");
-        toggleHighlight();
-    }
+//     else{
+//         let paragraphs = document.getElementsByTagName("p");
+//         for(elt of paragraphs)
+//         {
+//             let lowerinnerwords = elt.innerText.toLowerCase();
+//             let innerwords = elt.innerText;
+//             for (libword of libarr){
+//                 if (lowerinnerwords.includes(" " + libword)){
+//                     let position = lowerinnerwords.search(libword.toLowerCase()); //added
+//                     let html = `<span style="background-color: "" !important;">${libword}</span>`;
+//                     let wordlen = libword.length;
+//                     replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
+//                     // elt.innerHTML = replaced_innerwords;
+//                     replace_html += replaced_innerwords;
+//                 }
+//                 else{
+//                     replace_html += elt.innerHTML;
+//                 }
+//             }
+//             for (consword of consarr){
+//                 if (lowerinnerwords.includes(" " + consword)){
+//                     let position = lowerinnerwords.search(consword.toLowerCase()); //added
+//                     let html = `<span style="background-color: "" !important;">${consword}</span>`;
+//                     let wordlen = consword.length;
+//                     replaced_innerwords = innerwords.replaceAtIndex(position, html, wordlen);
+//                     // elt.innerHTML = replaced_innerwords;
+//                     replace_html += replaced_innerwords;
+//                 }
+//                 else{
+//                     replace_html += elt.innerHTML;
+//                 }
+//             }
+//             elt.innerHTML = replace_html;
+//         }
+//         console.log("end of loop");
+//         toggleHighlight();
+//     }
 }
 function toggleHighlight(){
     if(!isPressed){
