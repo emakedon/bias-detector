@@ -32,13 +32,35 @@ const libarr = ["misogynist", "equity", "microaggression", "microaggressions", '
 const consarr = ['tyranny', 'communist', 'criminal', 'freedom', 'radical', 'traitors', 'welfare', 'corruption', 'illegal', 'individualism', 'individual', 'responsibility', 'constitutional', 'constitution', 'overreach',
 'incompetent', 'values', 'free', 'liberty', 'liberties', 'marxist', 'marxism', 'elites', 'socialist', 'socialists','socialism', 'patriot', 'patriots', 'patriotism', 'thugs', 'thug', 'families', 'family', 'honest', 'Christian', 'penalty', 'creators', 'globalism', 'Soros', 'terror', 'terrorist', 'rights', 
 'lawlessness'];
-const emoarr = [];
+
+const angryarr = ['disgust', 'envy', 'exasperation', 'irritation', 'rage', 'torment', 'contempt', 'revulsion', 'jealous', 'aggravated', 'aggravation', 'agitated', 'agitation', 'annoy', 'annoying', 
+'annoying', 'grouchy', 'grouchiness', 'grumpy', 'grumpiness', 'irritating', 'irritation', 'bitter', 'bitterness', 'ferocious', 'ferocity', 'hate', 'hatred', 'fury', 'hostile', 'hostility', 'loathe', 
+'loathing', 'outrage', 'resent', 'resentment', 'score', 'spite', 'vengefulness', 'vengeful', 
+'wrath', 'abuse', 'abused', 'aggravate', 'agitate', 'anguished', 'anguish', 'betrayed', 'betray', 'cheated', 'coerced', 'cheat', 'coerce', 'controlled', 'control', 'deceived', 'deceived', 'disgusted', 
+'displeased', 'dismay', 'dismay', 'exploited', 'fuming', 'incensed', 'harassed', 'harass', 'furious', 'furiously', 'exasperated', 'mad', 'offended', 'offend', 'maddening', 
+'provoked', 'rebel', 'rebellious', 'resentful', 'seething', 'seethe', 'smothered', 'stifled', 'strangle', 
+'strangled', 'throttled', 'vindictive', 'ridiculed', 'ridicule', 'sabotage', 'sabotaged', 'perturbed', 'perturb', 'patronize', 'patronizing', 
+'repulse', 'repulsed', 'stifle', 'stifled', 'uptight', 'affront', 'affronted', 'antagonistic'];
+
+const extremearr = ['always', 'never', 'best', 'worst', 'all', 'none', 'must', 'except', 'every', 'just', 'only', 'impossible', 'imperfect', 'unnecessary'
+,'unequal', 'everything', 'greatest', 'entire', 'certain', 'blameless', 'confirmed', 'equivalent', 'innocent', 'premeditated', 'omnipotent', 'invulnerable', 'unconditional', 'universal', 'unquestionable', 'true', 'false', 'widespread', 'ultimate'
+, 'obvious', 'lacking', 'literally', 'infinite', 'total', 'unanimous', 'sure', 'vital', 'absolute', 'central', 'equal', 'eternal', 'exact', 'finest', 'ideal', 'immortal', 'incomparable', 'inevitable', 'irrefutable', 'needless', 'perfect', 'pure', 
+, 'definite', 'definitely', 'absolutely', 'complete', 'completely', 'constant', 'constantly', 'nothing', 'full', 'ever', 'totally', 'any', 'usual', 'usually', 'generally', 'regular', 'generally', 'general', 'rarely', 'seldom', 'frequently']
+
 for(libword of libarr){
     word_dict[libword] = "#FC9A9A";
 }
 for (consword of consarr){
     word_dict[consword] = "#9ABFFC";
 }
+
+for (angryword of angryarr){
+    word_dict[angryword] = "#F28500";
+}
+for (extremeword of extremearr){
+    word_dict[extremeword] = "#33cc33";
+}
+
 
 // console.log(word_dict);
 
