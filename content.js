@@ -1,5 +1,3 @@
-// chrome.runtime.onMessage.addListener(gotMessage);
-
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if( request.message == "highlight" ) {
@@ -17,7 +15,8 @@ chrome.runtime.onMessage.addListener(
 
 
 let isPressed = false;
-const word_dict = {};
+const words_to_color = {};
+const words_to_hover_phrase = {};
 const angryarr = ['disgust', 'envy', 'exasperation', 'irritation', 'rage', 'torment', 'contempt', 'revulsion', 'jealous', 'aggravated', 'aggravation', 'agitated', 'agitation', 'annoy', 'annoying', 
 'annoying', 'grouchy', 'grouchiness', 'grumpy', 'grumpiness', 'irritating', 'irritation', 'bitter', 'bitterness', 'ferocious', 'ferocity', 'hate', 'hatred', 'fury', 'hostile', 'hostility', 'loathe', 
 'loathing', 'outrage', 'resent', 'resentment', 'score', 'spite', 'vengefulness', 'vengeful', 
@@ -148,21 +147,22 @@ const consarr = ['enterprise', 'thin', 'sexual', 'prosperity', 'resulted', 'curr
        'Soros', 'terror', 'terrorist', 'rights', 'lawlessness'];
 
 for(libword of libarr){
-    word_dict[libword] = "#FC9A9A";
+    words_to_color[libword] = "#FC9A9A";
+    words_to_hover_phrase[libword] = "This word may show liberal bias";
 }
 for (consword of consarr){
-    word_dict[consword] = "#9ABFFC";
+    words_to_color[consword] = "#9ABFFC";
+    words_to_hover_phrase[consword] = "It's possible that this word shows conservative bias";
 }
 
 for (angryword of angryarr){
-    word_dict[angryword] = "#F28500";
+    words_to_color[angryword] = "#F28500";
+    words_to_hover_phrase[angryword] = "This looks like an emotionally charged word";
 }
 for (extremeword of extremearr){
-    word_dict[extremeword] = "#33cc33";
+    words_to_color[extremeword] = "#33cc33";
+    words_to_hover_phrase[extremeword] = "This word is absolute and may not leave room for argument";
 }
-
-
-// console.log(word_dict);
 
 String.prototype.replaceAtIndex = function(index, value, wordlen) {
     return ` <span> ${this.substr(0, index)}</span>` + value + `<span>${this.substr(index + wordlen)} </span>`
@@ -178,20 +178,18 @@ function highlightArticle()
             let p_html = ``;
             let lowerinnerwords = elt.innerText.toLowerCase();
             let innerwords_string = lowerinnerwords.split(" ");
-            // console.log(innerwords_string);
             for (innerword of innerwords_string){
                 let html = ``;
-                if(innerword in word_dict){
-                    let background_color = word_dict[innerword];
-                    // console.log(background_color);
-                    html = `<span style="background-color:${background_color}!important;">${innerword} </span>`;
+                if(innerword in words_to_color){
+                    let background_color = words_to_color[innerword];
+                    const hover_phrase = words_to_hover_phrase[innerword];
+                    html = `<span title = "${hover_phrase}" style="background-color:${background_color}!important;">${innerword} </span>`;
                 }
                 else{
                     html = `${innerword} `;
                 }
                 p_html += html;
             }
-            console.log(p_html);
             elt.innerHTML = p_html;
         }
         toggleHighlight();
@@ -205,7 +203,7 @@ function highlightArticle()
             let innerwords_string = lowerinnerwords.split(" ");
             for (innerword of innerwords_string){
                 let html = ``;
-                if(innerword in word_dict){
+                if(innerword in words_to_color){
                     html = `<span style="background-color:'' !important;">${innerword} </span>`;
                 }
                 else{
@@ -213,21 +211,17 @@ function highlightArticle()
                 }
                 p_html += html;
             }
-            console.log(p_html);
             elt.innerHTML = p_html;
         }
         toggleHighlight();
     }
 }
 function toggleHighlight(){
-    console.log("toggling");
     if(!isPressed){
         isPressed = true;
-        console.log("turning isPress to true");
     }
     else{
         isPressed = false;
-        console.log("turning isPress to false");
     }
 }
 
