@@ -1,0 +1,22 @@
+{
+  "name": "veritas-extension",
+  "version": "1.0.0",
+  "description": "bias detector",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emakedon/bias-detector.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emakedon/bias-detector/issues"
+  },
+  "homepage": "https://github.com/emakedon/bias-detector#readme",
+  "dependencies": {
+    "chart.js": "^3.7.1"
+  }
+}

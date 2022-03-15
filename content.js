@@ -1,7 +1,13 @@
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if( request.message == "highlight" ) {
-          highlightArticle();
+          let count_arr = highlightArticle();
+          sendResponse({"farewell": "byeee",
+                        "libwords": count_arr[0].toString(),
+                        "conswords" : count_arr[1], 
+                        "angrywords" : count_arr[2],
+                        "xtremewords" : count_arr[3]
+                        });
         }
     }
   );
@@ -25,11 +31,13 @@ const angryarr = ['disgust', 'envy', 'exasperation', 'irritation', 'rage', 'torm
 'provoked', 'rebel', 'rebellious', 'resentful', 'seething', 'seethe', 'smothered', 'stifled', 'strangle', 
 'strangled', 'throttled', 'vindictive', 'ridiculed', 'ridicule', 'sabotage', 'sabotaged', 'perturbed', 'perturb', 'patronize', 'patronizing', 
 'repulse', 'repulsed', 'stifle', 'stifled', 'uptight', 'affront', 'affronted', 'antagonistic'];
+let num_angry_words = 0;
 
 const extremearr = ['always', 'never', 'best', 'worst', 'all', 'none', 'must', 'except', 'every', 'just', 'only', 'impossible', 'imperfect', 'unnecessary'
 ,'unequal', 'everything', 'greatest', 'entire', 'certain', 'blameless', 'confirmed', 'equivalent', 'innocent', 'premeditated', 'omnipotent', 'invulnerable', 'unconditional', 'universal', 'unquestionable', 'true', 'false', 'widespread', 'ultimate'
 , 'obvious', 'lacking', 'literally', 'infinite', 'total', 'unanimous', 'sure', 'vital', 'absolute', 'central', 'equal', 'eternal', 'exact', 'finest', 'ideal', 'immortal', 'incomparable', 'inevitable', 'irrefutable', 'needless', 'perfect', 'pure', 
 , 'definite', 'definitely', 'absolutely', 'complete', 'completely', 'constant', 'constantly', 'nothing', 'full', 'ever', 'totally', 'any', 'usual', 'usually', 'generally', 'regular', 'generally', 'general', 'rarely', 'seldom', 'frequently']
+let num_extreme_words = 0;
 
 const libarr = ['affordable', 'gap', 'pollution', 'minority', 'renewable', 'leadership', 'ecological', 'greenhouse', 
 'coalition', 'bottom', 'supports', 'revenues', 'educated', 
@@ -89,6 +97,8 @@ const libarr = ['affordable', 'gap', 'pollution', 'minority', 'renewable', 'lead
     'belonging', 'equitable', 'colonialism', 'rooted', 'sustainable', 'climate', 'science', 'undocumented', 
     'ally-ship', 'disparate', 'inequity', 'structures', 'fragility', 'prejudice', 'decolonialism', 'implicit',
      'internalized', 'bias', 'biases', 'unconscious', 'reactionary'];
+let num_lib_words = 0;
+
 const consarr = ['enterprise', 'thin', 'sexual', 'prosperity', 'resulted', 'currency', 'intervention', 
 'innocent', 'virtue', 'output', 'constitutional', 'encourages', 'attempt', 'catholic', 'commerce', 
 'terrorist', 'suffer', 'vote', 'unintended', 'founders', 'gave', 'regardless', 'murder', 'confidence', 
@@ -145,22 +155,23 @@ const consarr = ['enterprise', 'thin', 'sexual', 'prosperity', 'resulted', 'curr
        'elites', 'socialist', 'socialists', 'socialism', 'patriot', 'patriots', 'patriotism', 'thugs', 
        'thug', 'families', 'family', 'honest', 'Christian', 'penalty', 'creators', 'globalism', 
        'Soros', 'terror', 'terrorist', 'rights', 'lawlessness'];
+let num_cons_words = 0;
 
 for(libword of libarr){
-    words_to_color[libword] = "#FC9A9A";
+    words_to_color[libword] = "#9ABFFC";
     words_to_hover_phrase[libword] = "This word may show liberal bias";
 }
 for (consword of consarr){
-    words_to_color[consword] = "#9ABFFC";
+    words_to_color[consword] = "#FC9A9A";
     words_to_hover_phrase[consword] = "It's possible that this word shows conservative bias";
 }
 
 for (angryword of angryarr){
-    words_to_color[angryword] = "#F28500";
+    words_to_color[angryword] = "#ca88fc";
     words_to_hover_phrase[angryword] = "This looks like an emotionally charged word";
 }
 for (extremeword of extremearr){
-    words_to_color[extremeword] = "#33cc33";
+    words_to_color[extremeword] = "#ABFBAF";
     words_to_hover_phrase[extremeword] = "This word is absolute and may not leave room for argument";
 }
 
@@ -168,9 +179,10 @@ String.prototype.replaceAtIndex = function(index, value, wordlen) {
     return ` <span> ${this.substr(0, index)}</span>` + value + `<span>${this.substr(index + wordlen)} </span>`
 }
 
-// function gotMessage(message,sender,sendresponse)
+
 function highlightArticle()
 {
+
 	if (!isPressed){
         let paragraphs = document.getElementsByTagName("p");
         for(elt of paragraphs)
@@ -182,6 +194,18 @@ function highlightArticle()
                 let html = ``;
                 if(innerword in words_to_color){
                     let background_color = words_to_color[innerword];
+                    if(background_color == "#ABFBAF"){
+                        num_extreme_words += 1;
+                    }
+                    else if (background_color == "#ca88fc"){
+                        num_angry_words += 1;
+                    }
+                    else if(background_color == "#9ABFFC"){
+                        num_cons_words += 1;
+                    }
+                    else{
+                        num_lib_words += 1;
+                    }
                     const hover_phrase = words_to_hover_phrase[innerword];
                     html = `<span title = "${hover_phrase}" style="background-color:${background_color}!important;">${innerword} </span>`;
                 }
@@ -193,6 +217,8 @@ function highlightArticle()
             elt.innerHTML = p_html;
         }
         toggleHighlight();
+        
+        
     }
     else{
         let paragraphs = document.getElementsByTagName("p");
@@ -213,8 +239,13 @@ function highlightArticle()
             }
             elt.innerHTML = p_html;
         }
+        num_lib_words = 0;
+        num_cons_words = 0;
+        num_angry_words = 0;
+        num_extreme_words = 0;
         toggleHighlight();
     }
+    return [num_lib_words, num_cons_words, num_angry_words, num_extreme_words];
 }
 function toggleHighlight(){
     if(!isPressed){
