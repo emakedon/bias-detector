@@ -11,13 +11,13 @@ chrome.runtime.onMessage.addListener(
         }
     }
   );
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-        if(request.message == "analyze" ){
-            analyzeArticle();
-        }
-    }
-);
+// chrome.runtime.onMessage.addListener(
+//     function(request, sender, sendResponse) {
+//         if(request.message == "analyze" ){
+//             analyzeArticle();
+//         }
+//     }
+// );
 
 let isPressed = false;
 
