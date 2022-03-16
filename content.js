@@ -12,13 +12,6 @@ chrome.runtime.onMessage.addListener(
         }
     }
   );
-// chrome.runtime.onMessage.addListener(
-//     function(request, sender, sendResponse) {
-//         if(request.message == "analyze" ){
-//             analyzeArticle();
-//         }
-//     }
-// );
 
 let isPressed = false;
 let buttonStatus = "Scan";
@@ -51,7 +44,7 @@ const libarr = ['affordable', 'gap', 'pollution', 'minority', 'renewable', 'lead
 'taken', 'treatment', 'break', 'affluent', 'immigrants', 'focused', 'earnings', 
 'urban', 'broad', 'workplace', 'adequate', 'expanding', 'committee', 'extreme', 'bargaining', 
 'structural', 'purposes', 'capitalists', 'corporation',
-'attacked', 'seriously', 'collective', 'base', 'improvement', 'test', 'completely', 'lending', 
+'attacked', 'seriously', 'collective', 'base', 'improvement', 'completely', 'lending', 
 'patterns', 'expanded', 'gives', 'african', 'fundamental', 'compassionate', 'permits', 'points', 
 'species', 'domination', 'thinking', 'projects', 'affected', 'happiness',
 'richest', 'hell', 'built', 'falling', 'dream', 'insurers',
@@ -59,7 +52,7 @@ const libarr = ['affordable', 'gap', 'pollution', 'minority', 'renewable', 'lead
 'procedure', 'compassion', 'agreements', 'classes',
 'severely', 'regulate', 'attacking', 'replace', 'extra', 'struggling', 'valuable', 'option', 
 'impossible', 'importance', 'overwhelming', 'rural', 'limit', 'dynamic', 'late', 'offered', 'calls',
-'disasters', 'structure', 'factors', 'counseling', 'contracts', 'chinese', 'tried', 'weaken', 
+'disasters', 'counseling', 'contracts', 'chinese', 'weaken', 
 'preventing', 'instruments', 'engaged', 'favorable', 'several', 'dioxide', 'contradictions', 
 'took', 'strategies', 'claimed', 'voter', 'aggressively', 'humans', 'tremendous', 
 'accumulation', 'initiatives', 'responses', 'treatments', 'includes', 'payroll', 
@@ -79,7 +72,7 @@ const libarr = ['affordable', 'gap', 'pollution', 'minority', 'renewable', 'lead
 'wealthier', 'extensive', 'atmosphere', 'subsidized', 'narrow', 'manipulated', 'govern', 
 'diversity', 'shifting', 'prop', 'fraudulent', 'flood', 'shows', 'ocean', 'harder', 'developed',
 'abused', 'content', 'mechanisms', 'elderly', 'disaster', 'naturally', 'excess', 'frequently', 'takes', 
-'cheats', 'crises', 'shareholders', 'send', 'room', 'numerous', 'governing', 
+'cheats', 'crises', 'shareholders', 'numerous', 'governing', 
 'addition', 'prek', 'eat', 'legitimate', 'provision', 'hopeless', 'disposal', 'historic', 'wait', 
 'imbalance', 'type', 'cap', 'membership', 'externalities', 'att', 'version', 'looking', 'managed', 
 'leaving', 'south', 'border', 'broader', 'manufacturers', 'congressional', 'adjust', 'analysis',
@@ -108,7 +101,7 @@ const consarr = ['enterprise', 'thin', 'sexual', 'prosperity', 'resulted', 'curr
 'wanted', 'rule', 'opposition', 'thousands', 'required', 'pointed', 'theory', 'weapon', 'dismiss', 
 'condition', 'initiative', 'original', 'sin', 'everything', 'pluses', 'freely', 'illegals', 'owners', 
 'alter', 'complex', 'model', 'heart', 'protected', 'prolife', 'enemy', 'respond', 'libertarian', 
-'bureaucracy', 'presents', 'records', 'church', 'barriers', 'usually', 'compelling', 'light', 
+'bureaucracy', 'presents', 'records', 'church', 'barriers', 'usually', 'compelling', 
 'believed', 'opponents', 'justified', 'pregnancy', 'immigrant', 'approach', 'mandate', 'morally', 
 'forcing', 'genuine', 'battles', 'criminal', 'known', 'dignity', 'bigger', 'charity', 'breakdown', 
 'freedoms', 'interstate', 'godgiven', 'compliance', 'trading', 'restore', 'throughout', 'recognize', 
@@ -121,12 +114,12 @@ const consarr = ['enterprise', 'thin', 'sexual', 'prosperity', 'resulted', 'curr
 'gold', 'consequence', 'fdr', 'sovereignty', 'leader', 'comply', 'principle', 'republic', 'consider', 
 'student', 'doctors', 'clause', 'hearts', 'porn', 'acorn', 'mind', 'spirit', 'b', 'entertainment', 
 'possibility', 'shift', 'focusing', 'imposition', 'industrial', 'maintenance', 'christ', 
-'christianity', 'dr', 'clearly', 'guarantee', 'spends', 'total', 'immense', 'traffic', 'perfectly', 
+'christianity', 'dr', 'clearly', 'guarantee', 'spends', 'immense', 'traffic', 'perfectly', 
 'rely', 'felt', 'writing', 'kennedy', 'trouble', 'unborn', 'powers', 'departments', 'determine', 
 'motivated', 'dependence', 'brought', 'exposure', 'virtually', 'pushed', 'female', 'ideological', 
 'bible', 'judges', 'december', 'period', 'ignorant', 'entitled', 'losing', 'socialism', 'web', 
 'talent', 'environmentalism', 'intentions', 'schemes', 'lawsuit', 'desperate', 'beliefs',
-'whites', 'came', 'character', 'taught', 'premiums', 'decision', 'samesex', 'article', 'borrowers', 
+'whites', 'character', 'taught', 'premiums', 'decision', 'samesex', 'article', 'borrowers', 
 'reflect', 'attract', 'license', 'ipcc', 'defending', 'male', 'arms', 'critics', 'guncontrol', 
 'virtues', 'changed', 'previously', 'hospitals', 'bailout', 'acting', 'written', 'described', 'sending',
 'youth', 'strongly', 'bankrupting', 'recently', 'entitlement', 'workforce', 'lesser', 'design', 'related',
@@ -134,17 +127,17 @@ const consarr = ['enterprise', 'thin', 'sexual', 'prosperity', 'resulted', 'curr
 'european', 'super', 'stage', 'purchases', 'solved', 'hundreds', 'controlled', 'rejecting', 'meet', 
 'rationale', 'teaching', 'existence', 'surplus', 'drained', 'subsidize', 'deregulation', 'potentially',
 'acceptance', 'checks', 'tolerance', 'discipline', 'governor', 'ad', 'criticize', 'statement', 
-'artificially', 'neither', 'blacks', 'faithbased', 'obtain', 'deliver', 'planners', 'fix', 'iran', 
+'artificially', 'neither', 'blacks', 'faithbased', 'obtain', 'fix', 'iran', 
 'temporary', 'nays', 'strength', 'manner', 'overspending', 'socialized', 'kept', 'assure', 'candidate', 
 'task', 'harmless', 'threatens', 'area', 'external', 'worked', 'erode', 'worried', 'immediately', 
-'aspect', 'appear', 'evils', 'bankroll', 'divorce', 'mean', 'cheaper', 'dominance', 'works', 'suggest', 
+'aspect', 'appear', 'evils', 'bankroll', 'divorce', 'cheaper', 'dominance', 'works', 'suggest', 
 'efficiently', 'violation', 'liabilities', 'contemporary', 'thomas', 'energyefficiency', 'friend', 
 'promoting', 'fought', 'payments', 'charitable', 'recovery', 'released', 'constantly', 'sort', 
 'founding', 'appreciate', 'sales', 'heritage', 'england', 'massachusetts', 'brutal', 'situation',
 'term', 'negligible', 'regime', 'cash', 'restricting', 'litigation', 'concludes', 'diseases', 
 'typically', 'core', 'incorporate', 'discredit', 'ted', 'author', 'requires', 'creditors', 
 'exorbitant', 'routinely', 'agendas', 'birth', 'method', 'lowering', 'happens', 'inducing', 
-'inventors', 'provider', 'ownership', 'bodies', 'believers', 'learn', 'hunting', 'traditions', 
+'inventors', 'provider', 'ownership', 'bodies', 'believers', 'hunting', 'traditions', 
 'catholics', 'excellence', 'illness', 'reporting', 'encouragement', 'terrorists', 'interfere', 
 'ice', 'chapter', 'size', 'alcohol', 'goals', 'panic', 'freed', 'hurts', 'employee', 'adopt', 
 'fundraiser', 'suffered', 'adverse', 'entitlements', 'democrat', 'unfunded', 'beings', 'exercise', 
@@ -200,10 +193,10 @@ function highlightArticle()
                         num_angry_words += 1;
                     }
                     else if(background_color == "#9ABFFC"){
-                        num_cons_words += 1;
+                        num_lib_words += 1;
                     }
                     else{
-                        num_lib_words += 1;
+                        num_cons_words += 1;
                     }
                     const hover_phrase = words_to_hover_phrase[innerword];
                     html = `<span title = "${hover_phrase}" style="background-color:${background_color}!important;">${innerword} </span>`;
