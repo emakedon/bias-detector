@@ -249,7 +249,3 @@ function toggleHighlight(){
         buttonStatus = "Scan";
     }
 }
-
-function analyzeArticle(){
-    window.open('https://totnmg6wtmgnaue4.anvil.app/DXEUBUSYFS2QM7GPNC7Y3HDD', '_blank');
-}

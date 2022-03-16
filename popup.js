@@ -1,20 +1,9 @@
 let scanArticle = document.getElementById('scanArticle');
-// let viewAnalysis =  document.getElementById('viewAnalysis');
 let libwordcount = document.getElementById('libwordcount');
-console.log(scanArticle);
-// console.log(viewAnalysis);
 
 String.prototype.replaceAtIndex = function(index, value, wordlen) {
     return ` <span> ${this.substr(0, index)}</span>` + value + `<span>${this.substr(index + wordlen)} </span>`
 }
-
-// chrome.runtime.onMessage.addListener(
-//     function(request, sender, sendResponse) {
-//         if(request.message == "countwords" ){
-//             document.querySelector('#libwordcount').innerHTML = `<p> There are ${request.libwords} liberal words.</p>`;
-//         }
-//     }
-// );
 
 scanArticle.onclick = function(element) {
 
@@ -32,12 +21,3 @@ scanArticle.onclick = function(element) {
     });
     });
 };
-
-// viewAnalysis.onclick = function(element) {
-
-//     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//         let activeTab = tabs[0];
-//         chrome.tabs.sendMessage(activeTab.id, {"message": "analyze"});
-//     });
-// };
-
