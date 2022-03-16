@@ -3,7 +3,8 @@ chrome.runtime.onMessage.addListener(
         if( request.message == "highlight" ) {
           let count_arr = highlightArticle();
           sendResponse({"farewell": "byeee",
-                        "libwords": count_arr[0].toString(),
+                        "button_status" : buttonStatus,
+                        "libwords": count_arr[0],
                         "conswords" : count_arr[1], 
                         "angrywords" : count_arr[2],
                         "xtremewords" : count_arr[3]
@@ -20,6 +21,7 @@ chrome.runtime.onMessage.addListener(
 // );
 
 let isPressed = false;
+let buttonStatus = "Scan";
 
 const words_to_color = {};
 const words_to_hover_phrase = {};
@@ -180,7 +182,6 @@ String.prototype.replaceAtIndex = function(index, value, wordlen) {
 
 function highlightArticle()
 {
-
 	if (!isPressed){
         let paragraphs = document.getElementsByTagName("p");
         for(elt of paragraphs)
@@ -248,9 +249,11 @@ function highlightArticle()
 function toggleHighlight(){
     if(!isPressed){
         isPressed = true;
+        buttonStatus = "Hide";
     }
     else{
         isPressed = false;
+        buttonStatus = "Scan";
     }
 }
 

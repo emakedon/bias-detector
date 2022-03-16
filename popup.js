@@ -28,6 +28,7 @@ scanArticle.onclick = function(element) {
             <p> There are ${response.angrywords}  <span style="background-color:#ca88fc ">angry</span> words.</p>
             <p> There are ${response.xtremewords}  <span style="background-color:#ABFBAF ">extreme</span> words.</p>
             `;
+            document.querySelector('#scanArticle').innerText = response.button_status;
     });
     });
 };
