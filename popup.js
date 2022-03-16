@@ -23,10 +23,10 @@ scanArticle.onclick = function(element) {
         chrome.tabs.sendMessage(activeTab.id, {"message": "highlight"}, function(response) {
             document.querySelector('#libwordcount').innerHTML =
             `
-            <p> There are ${response.libwords} <span style="background-color:#9ABFFC ">liberal</span> words.</p>
-            <p> There are ${response.conswords}  <span style="background-color:#FC9A9A">conservative</span> words.</p>
-            <p> There are ${response.angrywords}  <span style="background-color:#ca88fc ">angry</span> words.</p>
-            <p> There are ${response.xtremewords}  <span style="background-color:#ABFBAF ">extreme</span> words.</p>
+            <p>${response.libwords} words might show <span style="background-color:#9ABFFC ">liberal</span> bias.</p>
+            <p> ${response.conswords}  words might show <span style="background-color:#FC9A9A">conservative</span>  bias.</p>
+            <p> ${response.angrywords}  words might show <span style="background-color:#ca88fc ">angry</span>  bias.</p>
+            <p> ${response.xtremewords}  words might show <span style="background-color:#ABFBAF ">extreme</span>  bias.</p>
             `;
             document.querySelector('#scanArticle').innerText = response.button_status;
     });
